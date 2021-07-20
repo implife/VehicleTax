@@ -1,0 +1,10 @@
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\bin\Debug\VehicleLicenseTaxCalculator.exe.config
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\bin\Debug\VehicleLicenseTaxCalculator.exe
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\bin\Debug\VehicleLicenseTaxCalculator.pdb
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.csproj.AssemblyReference.cache
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.Form1.resources
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.Properties.Resources.resources
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.csproj.GenerateResource.cache
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.exe
+C:\Users\Zhian\source\repos\MySolution\VehicleLicenseTaxCalculator\obj\Debug\VehicleLicenseTaxCalculator.pdb
