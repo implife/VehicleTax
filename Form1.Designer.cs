@@ -43,7 +43,6 @@ namespace VehicleLicenseTaxCalculator
             this.label5 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.cbxDisplacement = new System.Windows.Forms.ComboBox();
-            this.lblResult = new System.Windows.Forms.Label();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.txtResult = new System.Windows.Forms.TextBox();
@@ -210,16 +209,6 @@ namespace VehicleLicenseTaxCalculator
             this.cbxDisplacement.Size = new System.Drawing.Size(210, 28);
             this.cbxDisplacement.TabIndex = 4;
             // 
-            // lblResult
-            // 
-            this.lblResult.AutoSize = true;
-            this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResult.Location = new System.Drawing.Point(174, 249);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(19, 20);
-            this.lblResult.TabIndex = 7;
-            this.lblResult.Text = "--";
-            // 
             // btnCalculate
             // 
             this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,12 +234,12 @@ namespace VehicleLicenseTaxCalculator
             // txtResult
             // 
             this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResult.Location = new System.Drawing.Point(129, 277);
+            this.txtResult.Location = new System.Drawing.Point(84, 277);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtResult.Size = new System.Drawing.Size(514, 245);
+            this.txtResult.Size = new System.Drawing.Size(541, 273);
             this.txtResult.TabIndex = 10;
             this.txtResult.Text = " ";
             // 
@@ -262,7 +251,6 @@ namespace VehicleLicenseTaxCalculator
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnCalculate);
-            this.Controls.Add(this.lblResult);
             this.Controls.Add(this.cbxDisplacement);
             this.Controls.Add(this.cbxType);
             this.Controls.Add(this.calendarPanel);
@@ -272,7 +260,7 @@ namespace VehicleLicenseTaxCalculator
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = " ";
+            this.Text = " Vehicle Tax Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -299,7 +287,6 @@ namespace VehicleLicenseTaxCalculator
         private System.Windows.Forms.DateTimePicker dtPickerTo;
         private System.Windows.Forms.ComboBox cbxType;
         private System.Windows.Forms.ComboBox cbxDisplacement;
-        private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.TextBox txtResult;

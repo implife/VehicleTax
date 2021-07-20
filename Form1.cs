@@ -197,7 +197,6 @@ namespace VehicleLicenseTaxCalculator
         #endregion
 
 
-
         #region Custom method
 
         private void init()
