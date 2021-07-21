@@ -234,12 +234,12 @@ namespace VehicleLicenseTaxCalculator
             // txtResult
             // 
             this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResult.Location = new System.Drawing.Point(84, 277);
+            this.txtResult.Location = new System.Drawing.Point(80, 304);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtResult.Size = new System.Drawing.Size(541, 273);
+            this.txtResult.Size = new System.Drawing.Size(541, 237);
             this.txtResult.TabIndex = 10;
             this.txtResult.Text = " ";
             // 
@@ -247,7 +247,7 @@ namespace VehicleLicenseTaxCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 578);
+            this.ClientSize = new System.Drawing.Size(688, 589);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnCalculate);

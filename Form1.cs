@@ -119,73 +119,39 @@ namespace VehicleLicenseTaxCalculator
         // 計算的按鈕事件
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+            // 取得類型、汽缸數和年額度
             string type = cbxType.SelectedItem.ToString();
             string displacement = cbxDisplacement.SelectedItem.ToString();
-
-            // 藉由用途類型和汽缸數取得對應的年額度
             int tax = getTax(type, displacement);
-            
-            // 判斷是全年度還是區間
-            DateTime dateFrom, dateTo;
+
+            // 判斷是全年度或區間
+            VehicleTax vTax;
             if (rbtnYear.Checked)
-            {
-                int thisYear = DateTime.Now.Year;
-                dateFrom = new DateTime(thisYear, 1, 1);
-                dateTo = new DateTime(thisYear, 12, 31);
-            }
+                vTax = new VehicleTax(tax);
             else
-            {
-                dateFrom = dtPickerFrom.Value.Date;
-                dateTo = dtPickerTo.Value.Date;
-            }
+                vTax = new VehicleTax(tax, dtPickerFrom.Value, dtPickerTo.Value);
 
-            // 處理可能有跨年份的問題
-            int count = dateTo.Year - dateFrom.Year + 1;    // 跨年份的數量
-            int[] years = new int[count];                   // 所跨的年份 ex: {2019, 2020, 2021}
-            int[] totalDaysInYear = new int[count];         // 每一年的天數，可能有潤年
-            DateTime[,] intervals = new DateTime[count, 2]; // 每一年的區間頭尾日期
-            int[] days = new int[count];                    // 每年區間的天數
-            int[] results = new int[count];                 // 根據天數算出的每年稅額
-
-            // 所跨的年份
-            for (int i = 0; i < count; i++)
-                years[i] = dateFrom.Year + i;
-
-            // 每一年的天數
-            totalDaysInYear = daysInYear(years);
-
-            // 每一年的區間頭尾日期
-            intervals = getInterval(dateFrom, dateTo);
-
-            // 每年區間的天數
-            days = getDaysInInterval(intervals);
-
-            // 根據天數算出的每年稅額
-            for (int i = 0; i < days.Length; i++)
-                results[i] = calculateTax(tax, days[i], totalDaysInYear[i]); // 小數部分捨棄
 
             // 將結果寫成字串
             string resultText = "";
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < vTax.GetCount(); i++)
             {
                 resultText +=
-                    $"使用期間: {intervals[i, 0].ToString("yyyy-MM-dd")} ~ {intervals[i, 1].ToString("yyyy-MM-dd")}"
-                        + Environment.NewLine +
-                    $"使用天數: {days[i]} 天" + Environment.NewLine +
+                    $"使用期間: {vTax.getIntervals()[i, 0].ToString("yyyy-MM-dd")} ~ " +
+                    $"{vTax.getIntervals()[i, 1].ToString("yyyy-MM-dd")}" + Environment.NewLine +
+                    $"使用天數: {vTax.getDaysInIntervals()[i]} 天" + Environment.NewLine +
                     $"用途: {type}" + Environment.NewLine +
                     $"汽缸cc數: {displacement}" + Environment.NewLine +
-                    $"計算公式: {tax} * {days[i]} / {totalDaysInYear[i]} = {results[i]} 元" + Environment.NewLine +
-                    $"應納稅額: {results[i]}" + Environment.NewLine + Environment.NewLine;
+                    $"計算公式: {vTax.tax} * {vTax.getDaysInIntervals()[i]} / {vTax.getDaysInYears()[i]} = {vTax.TaxEveryYear()[i]} 元" + Environment.NewLine +
+                    $"應納稅額: {vTax.TaxEveryYear()[i]}" + Environment.NewLine + Environment.NewLine;
             }
 
             // 如果不只一筆要寫總金額
-            if (count > 1)
+            if (vTax.GetCount() > 1)
             {
-                int total = 0;
-                foreach (int item in results)
-                    total += item;
-                resultText += $"全部應納稅額: {total} 元" + Environment.NewLine + Environment.NewLine;
+                resultText += $"共{vTax.GetCount()}筆，全部應納稅額: {vTax.TotalTax()} 元";
             }
+
             txtResult.Text = resultText;
         }
 
@@ -250,61 +216,6 @@ namespace VehicleLicenseTaxCalculator
                 default:
                     return 0;
             }
-        }
-
-        // 將每年的計算區間切割並回傳
-        private DateTime[,] getInterval(DateTime start, DateTime end)
-        {
-            int count = end.Year - start.Year + 1;
-            DateTime[,] intervals = new DateTime[count, 2];
-
-            for(int i = 0; i < count; i++)
-            {
-                // 每年的起始日
-                if (i == 0)
-                    intervals[i, 0] = start;
-                else
-                    intervals[i, 0] = new DateTime(start.Year + i, 1, 1);
-                
-                // 每年的結束日
-                if (i == count - 1)
-                    intervals[i, 1] = end;
-                else
-                    intervals[i, 1] = new DateTime(start.Year + i, 12, 31);
-            }
-            return intervals;
-        }
-
-        // 計算切割出的區間的天數
-        private int[] getDaysInInterval(DateTime[,] intervals)
-        {
-            int count = intervals.GetLength(0);
-            int[] days = new int[count];
-            for (int i = 0; i < count; i++)
-            {
-                days[i] = (intervals[i, 1] - intervals[i, 0]).Days + 1;    // 頭尾都要算所以加一天
-            }
-            return days;
-        }
-
-        // 計算稅額
-        private int calculateTax(int price, int days, int daysInYear)
-        {
-            return price * days / daysInYear;
-        }
-
-        // 判斷是否閏年，回傳天數
-        private int[] daysInYear(int[] years)
-        {
-            int[] result = new int[years.Length];
-            for (int i = 0; i < years.Length; i++)
-            {
-                if (DateTime.IsLeapYear(years[i]))
-                    result[i] = 366;
-                else
-                    result[i] = 365;
-            }
-            return result;
         }
 
         #endregion
