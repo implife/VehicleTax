@@ -46,7 +46,7 @@ namespace VehicleLicenseTaxCalculator
             this._count = 1;
         }
 
-        public VehicleTax(int t, DateTime st, DateTime en)
+        public VehicleTax (int t, DateTime st, DateTime en)
         {
             this.tax = t;
             this.startDate = st.Date;
